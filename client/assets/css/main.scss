@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-size: 18px;
+}
+
+#app {
+  position: relative;
+  width: min(450px, 100%);
+  height: min(800px, 100dvh);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px 4px #00000014;
+  display: flex;
+}
+
+.date-picker {
+  border: none !important;
+
+  > .vc-time-picker {
+    padding: 0;
+  }
+}
