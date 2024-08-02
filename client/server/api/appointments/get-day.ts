@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event);
 
-  const result = await $fetch(`${config.public.serverUrl}/create-appointment`, {
+  const result = await $fetch(`${config.public.serverUrl}/get-day`, {
     method: "POST",
     body,
   });

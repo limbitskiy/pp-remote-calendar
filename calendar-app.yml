@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   calendar-app:
@@ -6,7 +6,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      SERVER_URL: http://server:5005
+      NUXT_PUBLIC_SERVER_URL: http://server:5005
 
   server:
     build: server/.

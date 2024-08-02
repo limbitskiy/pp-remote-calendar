@@ -1,9 +1,8 @@
-const URL = process.env.SERVER_URL || "http://localhost:5005";
-
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
   const payload = await readBody(event);
 
-  const result = await $fetch(`${URL}/remove-appointment`, {
+  const result = await $fetch(`${config.public.serverUrl}/remove-appointment`, {
     method: "POST",
     body: payload,
   });

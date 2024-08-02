@@ -1,5 +1,7 @@
 <template>
   <div class="main-page flex-1">
+    <span>{{ status }}</span>
+    <span>{{ error }}</span>
     <NoConnection v-if="status === 'error'" />
     <div v-else class="flex flex-col gap-4">
       <VCalendar :initial-page="calendarPage" locale="ru" color="orange" :attributes="selectedDates" borderless expanded @dayclick="onDayClick" @did-move="onDidMove" />
@@ -15,33 +17,16 @@ const userStore = useUserStore();
 const { calendarPage } = storeToRefs(userStore);
 const { setCalendarPage } = userStore;
 
-const URL = process.env.SERVER_URL || "http://localhost:5005";
-
-const { data: appointments, status } = await useFetch(`${URL}/get-month`, {
+const {
+  data: appointments,
+  status,
+  error,
+} = await useFetch(`/api/appointments/get-month`, {
   method: "POST",
   body: calendarPage,
 });
 
 // console.log(appointments.value);
-
-// const selectedDates = [
-//   //   {
-//   //     content: "red",
-//   //     dates: [new Date(2024, 6, 3)],
-//   //   },
-//   //   {
-//   //     dot: "blue",
-//   //     dates: [new Date(2024, 6, 10)],
-//   //   },
-//   //   {
-//   //     bar: true,
-//   //     dates: [new Date(2024, 6, 21)],
-//   //   },
-//   //   {
-//   //     highlight: "blue",
-//   //     dates: [new Date(2024, 6, 1)],
-//   //   },
-// ];
 
 const selectedDates = computed(() => {
   const result = [
@@ -50,13 +35,7 @@ const selectedDates = computed(() => {
       highlight: {
         color: "gray",
         fillMode: "outline",
-        // contentClass: "italic",
       },
-      // content: {
-      //   style: {
-      //     color: "blue",
-      //   },
-      // },
       dates: [new Date()],
     },
   ];

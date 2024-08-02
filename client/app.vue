@@ -3,7 +3,9 @@
     <div id="app">
       <div class="layout-with-header flex-1 overflow-hidden flex flex-col">
         <div class="header h-14 flex items-center justify-between gap-2 bg-white">
-          <Icon name="material-symbols-light:arrow-back" size="30" class="ml-2 cursor-pointer" @click="onBack" />
+          <div class="back-cnt w-8 grid place-items-center">
+            <Icon v-if="currentLocation !== Locations['0']" name="material-symbols-light:arrow-back" size="30" class="ml-2 cursor-pointer" @click="onBack" />
+          </div>
           <span v-if="currentLocation === Locations['0']">Календарь</span>
           <span v-else-if="currentLocation === Locations['1']">{{ objectToLocaleString(route.query) }}</span>
           <span v-else-if="currentLocation === Locations['2']">{{ new Date(route.query.date).toLocaleDateString("ru") }}</span>

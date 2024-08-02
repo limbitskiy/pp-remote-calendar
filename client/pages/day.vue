@@ -27,9 +27,7 @@ import { getHoursAndMinutes } from "~/utils";
 
 const route = useRoute();
 
-const URL = process.env.SERVER_URL || "http://localhost:5005";
-
-const { data: day } = await useFetch(`${URL}/get-day`, {
+const { data: day } = await useFetch(`/api/appointments/get-day`, {
   method: "POST",
   body: route.query,
 });

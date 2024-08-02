@@ -24,12 +24,10 @@ const state = ref({
   date: new Date(),
 });
 
-const URL = process.env.SERVER_URL || "http://localhost:5005";
-
 if (route.params.id === "new") {
   state.value.date = route.query.date;
 } else {
-  const { data } = await useFetch(`${URL}/get-appointment`, {
+  const { data } = await useFetch(`/api/appointments/get-appointment`, {
     method: "POST",
     body: {
       id: route.params.id,

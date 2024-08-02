@@ -2,15 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: false },
-  modules: [
-    "@nuxt/ui",
-    "@nuxtjs/tailwindcss",
-    "@nuxt/image",
-    "@pinia/nuxt",
-    "@nuxt/icon",
-    "@nuxtjs/google-fonts",
-    "@samk-dev/nuxt-vcalendar"
-  ],
+  modules: ["@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxt/image", "@pinia/nuxt", "@nuxt/icon", "@nuxtjs/google-fonts", "@samk-dev/nuxt-vcalendar"],
   css: ["~/assets/css/main.scss"],
   colorMode: {
     preference: "light",
@@ -18,6 +10,11 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Montserrat: [400, 500, 600],
+    },
+  },
+  runtimeConfig: {
+    public: {
+      serverUrl: process.env.SERVER_URL || "http://localhost:5005",
     },
   },
 });
