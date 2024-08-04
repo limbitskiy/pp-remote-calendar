@@ -7,14 +7,17 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "light",
   },
-  googleFonts: {
-    families: {
-      Montserrat: [400, 500, 600],
-    },
-  },
+  // googleFonts: {
+  //   families: {
+  //     Montserrat: [400, 500, 600],
+  //   },
+  // },
   runtimeConfig: {
     public: {
       serverUrl: process.env.SERVER_URL || "http://localhost:5005",
+    },
+    auth: {
+      secret: "My super secret phrase!",
     },
   },
 });

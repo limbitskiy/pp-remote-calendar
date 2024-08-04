@@ -1,11 +1,22 @@
 <template>
   <div class="main-page flex-1">
-    <span>{{ status }}</span>
-    <span>{{ error }}</span>
+    <!-- <span>{{ status }}</span>
+    <span>{{ error }}</span> -->
     <NoConnection v-if="status === 'error'" />
+    <!-- <div v-else-if="!loggedIn" class="not-logged-in h-full grid place-items-center gap-4">
+      <div class="cnt flex flex-col items-center gap-4">
+        <p>Your are not logged in!</p>
+        <UButton @click="() => navigateTo('/login')">Go log in</UButton>
+      </div>
+    </div> -->
     <div v-else class="flex flex-col gap-4">
-      <VCalendar :initial-page="calendarPage" locale="ru" color="orange" :attributes="selectedDates" borderless expanded @dayclick="onDayClick" @did-move="onDidMove" />
-      <Stats :data="appointments" />
+      <UCard>
+        <VCalendar :initial-page="calendarPage" locale="ru" color="orange" :attributes="selectedDates" borderless expanded @dayclick="onDayClick" @did-move="onDidMove" />
+      </UCard>
+
+      <UCard>
+        <Stats :data="appointments" />
+      </UCard>
     </div>
   </div>
 </template>
@@ -25,8 +36,6 @@ const {
   method: "POST",
   body: calendarPage,
 });
-
-// console.log(appointments.value);
 
 const selectedDates = computed(() => {
   const result = [

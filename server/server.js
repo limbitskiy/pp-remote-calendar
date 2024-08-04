@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { ObjectId } = require("mongodb");
 const { connectToDb, getDb } = require("./db");
+const bcrypt = require("bcryptjs");
 
 const PORT = process.env.PORT || 5005;
 const COLLECTION_NAME = process.env.MONGODB_COLLECTION_NAME || "appointments";
@@ -10,7 +11,6 @@ let db;
 
 const app = express();
 
-app.use(cors());
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
 
@@ -131,6 +131,33 @@ app.post("/remove-appointment", (req, res) => {
       })
       .catch((err) => {
         res.status(500).json({ error: `Could not delete document` });
+      });
+  }
+});
+
+app.post("/login", (req, res) => {
+  const pass = req.body.pass;
+
+  console.log(pass);
+
+  if (pass) {
+    const query = {
+      login: "lena",
+    };
+
+    db.collection("users")
+      .findOne(query)
+      .then((db) => {
+        bcrypt.compare(pass, db?.pass, function (err, result) {
+          if (result) {
+            res.status(200).json({ msg: `Login successfull` });
+          } else {
+            res.status(401).json({ msg: `Wrong password` });
+          }
+        });
+      })
+      .catch((err) => {
+        res.status(400).json({ error: `Could not login` });
       });
   }
 });

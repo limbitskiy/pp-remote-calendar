@@ -1,7 +1,7 @@
 <template>
   <div class="day flex flex-col gap-2 rounded">
     <template v-if="day.length">
-      <div v-for="app in sortedDay" :key="app._id" class="appointment flex justify-between bg-white py-2 px-4 cursor-pointer rounded" @click="() => onAppClick(app._id)">
+      <UCard v-for="app in sortedDay" :key="app._id" class="appointment flex justify-between cursor-pointer" @click="() => onAppClick(app._id)">
         <div class="app-start flex flex-col gap-1">
           <span class="font-bold">{{ app.name }}</span>
           <div class="app-meta flex gap-4">
@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </UCard>
     </template>
     <span v-else>Нету записей</span>
     <UButton :ui="{ rounded: 'rounded-full' }" icon="ep:plus" size="xl" class="absolute bottom-5 right-5" @click="onAddTodo" />

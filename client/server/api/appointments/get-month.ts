@@ -3,10 +3,15 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event);
 
-  const result = await $fetch(`${config.public.serverUrl}/get-month`, {
-    method: "POST",
-    body,
-  });
+  try {
+    const result = await $fetch(`${config.public.serverUrl}/get-month`, {
+      method: "POST",
+      body,
+      credentials: "include",
+    });
 
-  return result;
+    return result;
+  } catch (error) {
+    throw new Error("Error fetching month");
+  }
 });

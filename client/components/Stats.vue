@@ -1,6 +1,6 @@
 <template>
   <div class="stats">
-    <span class="font-bold">Статистика:</span>
+    <p class="font-bold text-center mb-2">Статистика:</p>
     <div class="stats-item flex items-center justify-between">
       <span>Записей за месяц:</span>
       <span class="font-bold">{{ totalAppointments }}</span>

@@ -57,3 +57,8 @@ db.appointments.insertMany([
     date: new Date("2024-08-13T08:00:00.000Z"),
   },
 ]);
+
+db.users.insertOne({
+  login: "lena",
+  pass: "$2a$07$kIG.dbBl7tNrCO16LS/pEe92TOqpGy6xN8S4j.hzSsq9q25CBFxEe",
+});

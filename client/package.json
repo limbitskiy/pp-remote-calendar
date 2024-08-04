@@ -17,6 +17,8 @@
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia/nuxt": "^0.5.2",
     "@samk-dev/nuxt-vcalendar": "^1.0.4",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.12.4",
     "pinia": "^2.2.0",
     "vue": "latest"
